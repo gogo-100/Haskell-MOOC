@@ -10,6 +10,61 @@ University of Helsinki
 
 This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
 
+## Status
+Part	Exercise set	Points
+
+1	Set1.hs	0 / 11
+
+1	Set2a.hs	0 / 11
+
+1	Set2b.hs	0 / 8
+
+1	Set3a.hs	0 / 14
+
+1	Set3b.hs	0 / 10
+
+1	Set4a.hs	0 / 12
+
+1	Set4b.hs	0 / 7
+
+1	Set5a.hs	0 / 12
+
+1	Set5b.hs	0 / 10
+
+1	Set6.hs	0 / 12
+
+1	Set7.hs	0 / 10
+
+1	Set8.hs	0 / 10
+
+2	Set9a.hs	0 / 9
+
+2	Set9b.hs	0 / 9
+
+2	Set10a.hs	0 / 9
+
+2	Set10b.hs	0 / 4
+
+2	Set11a.hs	0 / 10
+
+2	Set11b.hs	0 / 7
+
+2	Set12.hs	0 / 11
+
+2	Set13a.hs	0 / 10
+
+2	Set13b.hs	0 / 9
+
+2	Set14a.hs	0 / 8
+
+2	Set14b.hs	0 / 8
+
+2	Set15.hs	0 / 15
+
+2	Set16a.hs	0 / 7
+
+2	Set16b.hs	0 / 5
+
 ## About the course
 
 This is an online course on Functional Programming that uses the
