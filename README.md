@@ -12,8 +12,6 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 
 ## Status
 Part	Exercise set	Points
-1	Set3a.hs	0 / 14
-1	Set3b.hs	0 / 10
 1	Set4a.hs	0 / 12
 1	Set4b.hs	0 / 7
 1	Set5a.hs	0 / 12

@@ -59,6 +59,10 @@ mapMaybe2 f Nothing _ = Nothing
 mapMaybe2 f _ Nothing = Nothing
 mapMaybe2 f (Just x) (Just y) = Just(f x y)
 
+-- mapMaybe2 :: (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
+-- mapMaybe2 f (Just x) (Just y) = Just (f x y)
+-- mapMaybe2 _ _        _        = Nothing
+
 ------------------------------------------------------------------------------
 -- Ex 4: define the functions firstHalf and palindrome so that
 -- palindromeHalfs returns the first halfs of all palindromes in its
@@ -82,6 +86,9 @@ palindromeHalfs xs = map firstHalf (filter palindrome xs)
 firstHalf :: String -> String
 firstHalf s = take len s
     where len = if mod (length s)  2 == 0 then (div (length s) 2) else div (length s + 1) 2
+
+-- 这里用整除就行了，没必要if else了
+-- firstHalf s = take ((length s + 1) `div` 2) s
 
 palindrome :: String -> Bool
 palindrome s = s == reverse s 
@@ -107,6 +114,10 @@ capitalize str = unwords $map capitalize' $words str
 capitalize' :: String -> String
 capitalize' x = (toUpper.head) x : (tail x)
 
+-- 直接用模式匹配就行
+-- capitalize :: String -> String
+-- capitalize = unwords . map capitalizeFirst . words
+-- where capitalizeFirst (c:cs) = toUpper c : cs
 
 ------------------------------------------------------------------------------
 -- Ex 6: powers k max should return all the powers of k that are less
@@ -232,6 +243,7 @@ sumRights x = sum $map (either sumLeft sumRight) x
 sumLeft x = 0
 sumRight x = x
 
+-- sumRights = sum . map (either (const 0) id)
 
 ------------------------------------------------------------------------------
 -- Ex 12: recall the binary function composition operation
@@ -271,7 +283,19 @@ multiCompose (x:xs) val = x $multiCompose xs val
 --   multiApp id [head, (!!2), last] "axbxc" ==> ['a','b','c'] i.e. "abc"
 --   multiApp sum [head, (!!2), last] [1,9,2,9,3] ==> 6
 
-multiApp fs ls val = fs $multiCompose ls val
+multiApp fs ls val = fs $go ls val
+
+go []     val = []
+go (f:ls) val = f val : go ls val 
+
+
+-- 这个也可以用list comprehensions
+--multiApp :: ([b] -> c) -> [a -> b] -> a -> c
+--multiApp f gs x = f [g x | g <- gs]
+
+-- Answer to the challenge:
+-- 反过来map
+-- multiApp f gs x = f $ (map ($x) gs)
 
 ------------------------------------------------------------------------------
 -- Ex 14: in this exercise you get to implement an interpreter for a
@@ -306,4 +330,14 @@ multiApp fs ls val = fs $multiCompose ls val
 -- function, the surprise won't work. See section 3.8 in the material.
 
 interpreter :: [String] -> [String]
-interpreter commands = todo
+interpreter []       = []
+interpreter commands = op commands 0 0
+
+op :: [String] -> Int -> Int -> [String]
+op []    x y = []
+op ("up":cs) x y = op cs x $y+1
+op ("down":cs) x y = op cs x $y-1
+op ("left":cs) x y = op cs (x-1) y
+op ("right":cs) x y = op cs (x+1) y
+op ("printX":cs) x y = (show x) : op cs x y 
+op ("printY":cs) x y = (show y) : op cs x y 
